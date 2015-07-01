@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Stephen Brandon
+  description: An Ansible role for installing Burrow by Linkedin.
+  company: sparkcentral
+  min_ansible_version: 1.9
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - cloud
+  - clustering
+  - system
+dependencies:
+  - { role: "kbrebanov.golang" }

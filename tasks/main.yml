@@ -1,0 +1,45 @@
+---
+
+- name: install GPM (go package manager)
+  sudo: yes
+  shell: "wget https://raw.githubusercontent.com/pote/gpm/v1.3.2/bin/gpm && chmod +x gpm && sudo mv gpm /usr/local/bin"
+
+- name: download burrow
+  sudo: yes
+  sudo_user: "{{ sudo_user }}"
+  environment:
+    GOPATH: "{{ GOPATH }}"
+  shell: "/usr/bin/go get {{ burrow_link }}"
+
+- name: gpm install burrow deps
+  sudo: yes
+  sudo_user: "{{ sudo_user }}"
+  environment:
+    GOPATH: "{{ GOPATH }}"
+  shell: "gpm install"
+  args:
+    chdir: "{{ GOPATH }}/src/{{ burrow_link }}"
+
+- name: install burrow
+  sudo: yes
+  sudo_user: "{{ sudo_user }}"
+  environment:
+    GOPATH: "{{ GOPATH }}"
+  shell: "go install"
+  args:
+    chdir: "{{ GOPATH }}/src/{{ burrow_link }}"
+
+- name: make sure burrow dir exists
+  file: state=directory path=/etc/burrow owner="{{ sudo_user }}" group="{{ sudo_group }}" mode=0755
+
+- name: make sure logdir exists
+  file: state=directory path="{{ logdir }}" owner="{{ sudo_user }}" group="{{ sudo_group }}" mode=0755
+
+- name: copy burrow config
+  template: src=burrow.cfg dest=/etc/burrow/burrow.cfg owner="{{ sudo_user }}" group="{{ sudo_group }}" mode=0755
+
+- name: copy upstart script
+  template: src=burrow.conf dest=/etc/init owner="{{ sudo_user }}" group="{{ sudo_group }}" mode=0644
+
+- name: enable burrow
+  service: name=burrow state=started enabled=yes

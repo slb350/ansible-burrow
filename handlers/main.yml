@@ -1,0 +1,3 @@
+---
+- name: restart burrow
+  service: name=burrow state=restarted

@@ -1,0 +1,14 @@
+---
+
+GOPATH: /path/to/go
+sudo_user: user
+sudo_group: user
+burrow_link: github.com/linkedin/burrow
+logdir: /var/log
+
+zookeeper_host: localhost
+zookeeper_port: 2181
+
+kafka_cluster_name: kafka-local
+kafka_broker_host: localhost
+kafka_port: 9092
