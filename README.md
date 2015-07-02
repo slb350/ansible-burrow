@@ -1,6 +1,6 @@
 # ansible-burrow
 
-An Ansible role for installing [Burrow](https://github.com/linkedin/Burrow).
+An Ansible role for installing [Burrow](https://github.com/linkedin/Burrow). This also installs [golang](https://golang.org/), and [gpm](https://github.com/pote/gpm) as well.
 
 ### what is burrow?
 
