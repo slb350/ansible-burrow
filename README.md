@@ -8,8 +8,8 @@ Burrow is a monitoring companion for Apache Kafka that provides consumer lag che
 
 ### install this role and it's dependency
 
-`ansible-galaxy install slb350.Ansible-Burrow`
-`ansible-galaxy install kbrebanov.golang`
+`ansible-galaxy install slb350.Ansible-Burrow &&
+ansible-galaxy install kbrebanov.golang`
 
 ## Role Variables
 
